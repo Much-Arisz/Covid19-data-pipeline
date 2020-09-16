@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  webserver:
+    image: puckel/docker-airflow:latest
+    container_name: Airflow
+    volumes:
+      - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg
+      - ./dags/:/usr/local/airflow/dags
+    environment:
+      - LOAD_EX=y
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - backend
+    depends_on:
+      - MySQL
+
+  MySQL:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: airflow_db
+      MYSQL_ROOT_PASSWORD: password
+    container_name: MySQL
+    ports:
+      - 3306:3306
+    networks:
+      - backend
+
+  Mailhog:
+    image: mailhog/mailhog
+    container_name: Mailhog
+    ports: 
+      - 1025:1025 # smtp server
+      - 8025:8025
+    networks:
+      - backend
+      
+networks:
+  backend:
+    driver: "bridge"

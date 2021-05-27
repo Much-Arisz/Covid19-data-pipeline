@@ -54,7 +54,6 @@ CREATE TABLE daily_covid19_reports (
 
 ## Get start
 #### 1. Turn on covid19_data_pipeline DAG
-![Example](https://lh5.googleusercontent.com/jlE9l7r-kHcVC7sPsT8iCJZbMRdrwmqDlMbC4O_EnhktBv_GzcnsgL_n9kv5IctDq7M4CbixXB-585XtzK8Z2p2ZvDP43nxy6QfzgyjT=s1600)
 #### 2. Check MailHog (127.0.0.1:8025)
 #### 3. Query COVID-19 Report Data
 ```sh
